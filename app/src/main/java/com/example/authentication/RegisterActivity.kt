@@ -52,6 +52,15 @@ class RegisterActivity : AppCompatActivity() {
 
                             // set  the user's display name here
                             val user = auth.currentUser
+                            user?.sendEmailVerification()
+                                ?.addOnCompleteListener(this) { task ->
+                                    if (task.isSuccessful) {
+                                        Toast.makeText(this, "Verification email sent. Please check your inbox.", Toast.LENGTH_LONG).show()
+                                    } else {
+                                        Toast.makeText(this, "Failed to send verification email. Please try again.", Toast.LENGTH_LONG).show()
+                                    }
+                                }
+
                             val profileUpdates = UserProfileChangeRequest.Builder()
                                 .setDisplayName(name)
                                 .build()

@@ -34,12 +34,15 @@ import com.google.firebase.ktx.Firebase
                  auth.signInWithEmailAndPassword(email, password)
                      .addOnCompleteListener(this) { task ->
                          if (task.isSuccessful) {
-                             // Sign in success, update UI with the signed-in user's information
-                             Log.d(TAG, "signInWithEmail:success")
                              val user = auth.currentUser
-                             Toast.makeText(baseContext, "Login successful.", Toast.LENGTH_SHORT,).show()
-                             val intent = Intent(this,MainActivity::class.java)
-                             startActivity(intent)
+                             if (user != null && user.isEmailVerified) {
+                                 // User is logged in and their email is verified
+                                 val intent = Intent(this, MainActivity::class.java)
+                                 startActivity(intent)
+                             } else {
+                                 // User's email is not verified, prevent login
+                                 Toast.makeText(applicationContext, "Please verify your email before logging in.", Toast.LENGTH_SHORT).show()
+                             }
                          } else {
                              // If sign in fails, display a message to the user.
                              Log.w(TAG, "signInWithEmail:failure", task.exception)

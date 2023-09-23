@@ -16,9 +16,7 @@
         <activity
             android:name=".ResetPasswdActivity"
             android:exported="false" />
-        <activity
-            android:name=".RestPasswdActivity"
-            android:exported="false" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
@@ -31,7 +29,7 @@
         <activity
             android:name=".SplashActivity"
             android:exported="true"
-            android:theme="@style/SplashTheme">
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
